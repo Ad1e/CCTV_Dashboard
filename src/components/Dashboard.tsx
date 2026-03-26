@@ -128,6 +128,8 @@ function FeedVisual({ cam, idx }: { cam: Campus; idx: number }) {
       <div style={{ position:"absolute", top:10, right:10, fontSize:9, fontFamily:"monospace", color:`${c1}cc`, letterSpacing:"0.1em" }}>{cam.fps}fps</div>
     </div>
   );
+}
+
 
 // ── SignalBars ─────────────────────────────────────────────────────────────
 
@@ -143,6 +145,8 @@ function SignalBars({ value }: { value: number }) {
     </div>
   );
 }
+
+export default Dashboard;
 
 // ── Badge ──────────────────────────────────────────────────────────────────
 
@@ -243,8 +247,9 @@ function LiveClock() {
   );
 }
 
-// ── Root ───────────────────────────────────────────────────────────────────
 
+// ── Root ───────────────────────────────────────────────────────────────────
+function Dashboard() {
   const [filter,   setFilter]   = useState<FilterType>("all");
   const [search,   setSearch]   = useState<string>("");
   const [cols,     setCols]     = useState<ColCount>(4);
@@ -285,12 +290,10 @@ function LiveClock() {
       <header className="dashboard-header">
         <div className="dashboard-header-left">
           <div className="dashboard-header-logo">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round">
-              <path d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
-            </svg>
+            <img src="/bsu-logo.png" alt="BSU Logo" style={{ width: 34, height: 34, borderRadius: "50%", objectFit: "cover" }} />
           </div>
           <div className="dashboard-header-title">
-            <div className="dashboard-header-title-main">CCTV Dashboard</div>
+            <div className="dashboard-header-title-main">Dashboard</div>
             <div className="dashboard-header-title-sub">REAL-TIME CAMPUS MONITOR</div>
           </div>
         </div>
