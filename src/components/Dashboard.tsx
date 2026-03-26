@@ -1,5 +1,6 @@
 import "../components/dashboard.css";
 import { useState, useEffect } from "react";
+import bsuLogo from "../assets/bsu-logo.png";
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -290,7 +291,14 @@ function Dashboard() {
       <header className="dashboard-header">
         <div className="dashboard-header-left">
           <div className="dashboard-header-logo">
-            <img src="/bsu-logo.png" alt="BSU Logo" style={{ width: 34, height: 34, borderRadius: "50%", objectFit: "cover" }} />
+            <img
+              src={bsuLogo}
+              alt=""
+              style={{
+                width: 64,
+                height: 64
+              }}
+            />
           </div>
           <div className="dashboard-header-title">
             <div className="dashboard-header-title-main">Dashboard</div>

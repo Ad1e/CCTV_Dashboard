@@ -68,7 +68,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 24px;
+  padding: 20px 32px;
   background: #030712f0;
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255,255,255,0.07);
@@ -78,17 +78,7 @@
   align-items: center;
   gap: 12px;
 }
-.dashboard-header-logo {
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  background: linear-gradient(135deg,#0ea5e9,#2563eb);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 14px #0ea5e950;
-  flex-shrink: 0;
-}
+
 .dashboard-header-title-main {
   font-size: 14px;
   font-weight: 700;
