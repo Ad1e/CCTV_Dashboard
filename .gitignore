@@ -18,6 +18,10 @@ mediamtx.exe
 # MediaMTX recordings directory
 recordings/
 
+# Generated locally from cameras.json (may contain RTSP credentials)
+server/mediamtx.generated.yml
+server/hls/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
