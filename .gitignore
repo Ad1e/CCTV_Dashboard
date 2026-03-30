@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+# MediaMTX — binary should not be in the repo (too large)
+mediamtx.exe
+
+# MediaMTX recordings directory
+recordings/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
