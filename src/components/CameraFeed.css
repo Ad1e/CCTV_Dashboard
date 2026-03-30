@@ -4,6 +4,51 @@
    depth comes from shadow, status from overlays not borders.
    ═══════════════════════════════════════════════════════════ */
 
+:root[data-theme="dark"],
+:root:not([data-theme]) {
+  --cf-card-shadow: 0 2px 16px rgba(0,0,0,0.45);
+  --cf-card-shadow-hover: 0 12px 40px rgba(0,0,0,0.55);
+  --cf-card-glow: var(--cam-glow, rgba(56,189,248,0.18));
+  --cf-expanded-shadow: 0 0 30px rgba(56,189,248,0.12), 0 12px 40px rgba(0,0,0,0.5);
+  --cf-motion-extra: 0 8px 30px -6px rgba(245,158,11,0.22);
+  --cf-feed-bg: #020609;
+  --cf-actions-bg: rgba(4,9,15,0.55);
+  --cf-action-btn-bg: rgba(10,20,36,0.9);
+  --cf-action-btn-fg: rgba(255,255,255,0.8);
+  --cf-rec-label: rgba(255,255,255,0.35);
+  --cf-cam-id: rgba(255,255,255,0.12);
+  --cf-meta-gradient: linear-gradient(to top, rgba(4,9,15,0.92) 0%, transparent 100%);
+  --cf-label-name: rgba(255,255,255,0.88);
+  --cf-label-loc: rgba(255,255,255,0.38);
+  --cf-info-bg: rgba(6,11,21,0.9);
+  --cf-nosignal-bg: #020507;
+  --cf-nosignal-sub: rgba(255,255,255,0.2);
+  --cf-scanline: rgba(0,0,0,0.14);
+  --cf-noise: rgba(255,255,255,0.012);
+}
+
+:root[data-theme="light"] {
+  --cf-card-shadow: 0 2px 18px rgba(15,23,42,0.07);
+  --cf-card-shadow-hover: 0 14px 44px rgba(15,23,42,0.11);
+  --cf-card-glow: var(--cam-glow, rgba(2,132,199,0.16));
+  --cf-expanded-shadow: 0 0 28px rgba(2,132,199,0.12), 0 12px 40px rgba(15,23,42,0.08);
+  --cf-motion-extra: 0 8px 28px -6px rgba(245,158,11,0.18);
+  --cf-feed-bg: #e2e8f0;
+  --cf-actions-bg: rgba(248,250,252,0.9);
+  --cf-action-btn-bg: rgba(255,255,255,0.96);
+  --cf-action-btn-fg: rgba(15,23,42,0.82);
+  --cf-rec-label: rgba(15,23,42,0.45);
+  --cf-cam-id: rgba(15,23,42,0.22);
+  --cf-meta-gradient: linear-gradient(to top, rgba(241,245,249,0.96) 0%, transparent 100%);
+  --cf-label-name: rgba(15,23,42,0.92);
+  --cf-label-loc: rgba(15,23,42,0.52);
+  --cf-info-bg: rgba(248,250,252,0.98);
+  --cf-nosignal-bg: #f1f5f9;
+  --cf-nosignal-sub: rgba(15,23,42,0.45);
+  --cf-scanline: rgba(15,23,42,0.07);
+  --cf-noise: rgba(15,23,42,0.035);
+}
+
 /* ── Card wrapper ────────────────────────────────────────── */
 .cf-card {
   background: var(--bg-card);
@@ -16,7 +61,7 @@
   flex-direction: column;
   position: relative;
   /* Depth via shadow, not border */
-  box-shadow: 0 2px 16px rgba(0,0,0,0.45);
+  box-shadow: var(--cf-card-shadow);
   transition: box-shadow 0.25s var(--ease-out), transform 0.25s var(--ease-out);
 }
 
@@ -24,8 +69,8 @@
 .cf-card:hover {
   transform: translateY(-3px) scale(1.005);
   box-shadow:
-    0 12px 40px rgba(0,0,0,0.55),
-    0 0 30px -8px var(--cam-glow, rgba(56,189,248,0.18));
+    var(--cf-card-shadow-hover),
+    0 0 30px -8px var(--cf-card-glow);
 }
 
 .cf-card.cf-card-featured { border-radius: 12px; }
@@ -34,13 +79,12 @@
 .cf-card.cf-card-expanded {
   box-shadow:
     0 0 0 2px var(--cyan),
-    0 0 30px rgba(56,189,248,0.12),
-    0 12px 40px rgba(0,0,0,0.5);
+    var(--cf-expanded-shadow);
 }
 
 /* Offline: faint red layer over card — no outline */
 .cf-card.cf-card-offline {
-  box-shadow: 0 2px 16px rgba(0,0,0,0.45);
+  box-shadow: var(--cf-card-shadow);
 }
 .cf-card.cf-card-offline::after {
   content: '';
@@ -55,8 +99,8 @@
 /* Motion alert: amber glow from bottom */
 .cf-card.cf-motion {
   box-shadow:
-    0 2px 16px rgba(0,0,0,0.45),
-    0 8px 30px -6px rgba(245,158,11,0.22);
+    var(--cf-card-shadow),
+    var(--cf-motion-extra);
 }
 
 /* ── Feed (video/placeholder area) ──────────────────────── */
@@ -65,7 +109,7 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: #020609;
+  background: var(--cf-feed-bg);
   flex-shrink: 0;
 }
 .cf-card-featured .cf-feed { aspect-ratio: unset; flex: 1; }
@@ -77,14 +121,14 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background: #020609;
+  background: var(--cf-feed-bg);
 }
 
 /* ── Hover quick-action overlay ──────────────────────────── */
 .cf-actions {
   position: absolute;
   inset: 0;
-  background: rgba(4,9,15,0.55);
+  background: var(--cf-actions-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -103,9 +147,9 @@
   gap: 5px;
   padding: 10px 12px;
   border-radius: 9px;
-  background: rgba(10,20,36,0.9);
-  border: 1px solid rgba(56,189,248,0.2);
-  color: rgba(255,255,255,0.8);
+  background: var(--cf-action-btn-bg);
+  border: 1px solid var(--border-md);
+  color: var(--cf-action-btn-fg);
   cursor: pointer;
   backdrop-filter: blur(8px);
   transition: all 0.15s;
@@ -200,7 +244,7 @@
 .cf-rec-label {
   font-size: 7.5px;
   font-family: var(--font-mono);
-  color: rgba(255,255,255,0.35);
+  color: var(--cf-rec-label);
   letter-spacing: 0.16em;
 }
 
@@ -242,7 +286,7 @@
   left: 9px;
   font-size: 7.5px;
   font-family: var(--font-mono);
-  color: rgba(255,255,255,0.12);
+  color: var(--cf-cam-id);
   letter-spacing: 0.1em;
   pointer-events: none;
   z-index: 10;
@@ -256,14 +300,14 @@
   position: absolute;
   bottom: 0; left: 0; right: 0;
   padding: 30px 10px 8px;
-  background: linear-gradient(to top, rgba(4,9,15,0.92) 0%, transparent 100%);
+  background: var(--cf-meta-gradient);
   pointer-events: none;
   z-index: 9;
 }
 .cf-label-name {
   font-size: 11px;
   font-weight: 600;
-  color: rgba(255,255,255,0.88);
+  color: var(--cf-label-name);
   letter-spacing: 0.01em;
   white-space: nowrap;
   overflow: hidden;
@@ -272,7 +316,7 @@
 .cf-label-location {
   font-size: 8px;
   font-family: var(--font-mono);
-  color: rgba(255,255,255,0.38);
+  color: var(--cf-label-loc);
   letter-spacing: 0.1em;
   margin-top: 1px;
   white-space: nowrap;
@@ -308,7 +352,7 @@
   gap: 8px;
   flex-shrink: 0;
   /* Seamless dark section — no border */
-  background: rgba(6,11,21,0.9);
+  background: var(--cf-info-bg);
 }
 .cf-info-left { min-width: 0; flex: 1; }
 .cf-info-name {
@@ -354,7 +398,7 @@
 .cf-nosignal {
   position: absolute;
   inset: 0;
-  background: #020507;
+  background: var(--cf-nosignal-bg);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -365,7 +409,7 @@
   position: absolute;
   inset: 0;
   background-image:
-    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.012) 3px);
+    repeating-linear-gradient(0deg, transparent, transparent 2px, var(--cf-noise) 3px);
   pointer-events: none;
 }
 .cf-nosignal-label {
@@ -378,7 +422,7 @@
 .cf-nosignal-sub {
   font-size: 8px;
   font-family: var(--font-mono);
-  color: rgba(255,255,255,0.2);
+  color: var(--cf-nosignal-sub);
   position: relative;
   letter-spacing: 0.12em;
 }
@@ -387,7 +431,7 @@
 .cf-connecting {
   position: absolute;
   inset: 0;
-  background: #020507;
+  background: var(--cf-nosignal-bg);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -416,7 +460,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.14) 3px);
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, var(--cf-scanline) 3px);
   background-size: 100% 4px;
   z-index: 3;
 }

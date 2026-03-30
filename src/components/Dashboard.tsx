@@ -1,6 +1,6 @@
 import "./Dashboard.css";
 import "./CameraFeed.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import bsuLogo from "../assets/bsu-logo.png";
 import CameraFeed, { type Campus } from "./CameraFeed";
 
@@ -9,6 +9,9 @@ export type { Campus };
 type FilterType = "all" | "online" | "offline";
 type ColCount   = 2 | 3 | 4;
 type LayoutMode = "matrix" | "uniform";
+type ThemeMode = "dark" | "light";
+
+const THEME_KEY = "bsu-cctv-theme";
 
 // ── Camera data ────────────────────────────────────────────────────────────
 const CAMPUSES: Campus[] = [
@@ -100,6 +103,21 @@ export default function Dashboard() {
   const [cols,     setCols]     = useState<ColCount>(4);
   const [layout,   setLayout]   = useState<LayoutMode>("matrix");
   const [expanded, setExpanded] = useState<string | null>(null);
+  const [theme, setTheme] = useState<ThemeMode>(() => {
+    if (typeof window === "undefined") return "dark";
+    const s = localStorage.getItem(THEME_KEY);
+    return s === "light" ? "light" : "dark";
+  });
+
+  useEffect(() => {
+    localStorage.setItem(THEME_KEY, theme);
+    document.documentElement.setAttribute("data-theme", theme);
+    document.documentElement.style.colorScheme = theme === "light" ? "light" : "dark";
+  }, [theme]);
+
+  const toggleTheme = useCallback(() => {
+    setTheme((t) => (t === "dark" ? "light" : "dark"));
+  }, []);
 
   const online     = CAMPUSES.filter(c => c.status === "online").length;
   const offline    = CAMPUSES.filter(c => c.status === "offline").length;
@@ -161,6 +179,15 @@ export default function Dashboard() {
             <div className="status-pill-dot" />
             <span className="status-pill-label">SYSTEMS ACTIVE</span>
           </div>
+          <button
+            type="button"
+            className="dashboard-theme-toggle"
+            onClick={toggleTheme}
+            title={theme === "dark" ? "Light mode" : "Dark mode"}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {theme === "dark" ? "☀️" : "🌙"}
+          </button>
           <LiveClock />
         </div>
       </header>
