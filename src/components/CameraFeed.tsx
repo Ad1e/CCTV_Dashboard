@@ -92,9 +92,8 @@ function PlaceholderVisual({ cam, idx }: { cam: Campus; idx: number }) {
       <div style={{ position:"absolute", inset:0, background:`radial-gradient(ellipse at 28% 65%,${c1}22 0%,transparent 52%),radial-gradient(ellipse at 78% 28%,${c2}16 0%,transparent 50%),linear-gradient(170deg,#04060d 0%,#05090f 100%)` }} />
       {/* Scanlines */}
       <div className="cf-scanlines" />
-      {/* Animated scan line */}
-      <div className="cf-scan-line" style={{ '--cam-accent': c1 } as React.CSSProperties} />
       {/* City silhouette */}
+
       <svg style={{ position:"absolute", bottom:0, left:0, width:"100%", opacity:0.14 }} viewBox="0 0 320 80" preserveAspectRatio="none">
         <rect x="10"  y="35" width="38" height="45" fill={c1} opacity="0.8"/>
         <rect x="20"  y="18" width="18" height="17" fill={c1} opacity="0.6"/>
@@ -163,8 +162,8 @@ export default function CameraFeed({
       ref={containerRef}
       className={cardCls}
       style={{
-        opacity: displayStatus === "offline" ? 0.72 : 1,
         '--cam-accent': c1,
+        '--cam-glow': `${c1}30`,
       } as React.CSSProperties}
       onClick={() => onExpand(expanded ? null : cam.id)}
     >
