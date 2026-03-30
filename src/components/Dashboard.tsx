@@ -12,17 +12,17 @@ type LayoutMode = "matrix" | "uniform";
 
 // ── Camera data ────────────────────────────────────────────────────────────
 const CAMPUSES: Campus[] = [
-  { id:"CAM-01", name:"Main Campus",     location:"Administration Block", status:"online",     motion:true,  fps:30, signal:95, streamUrl:undefined, streamUrlHD:undefined },
-  { id:"CAM-02", name:"Alangilan",       location:"Engineering Building", status:"online",     motion:false, fps:30, signal:88, streamUrl:undefined, streamUrlHD:undefined },
-  { id:"CAM-03", name:"ARASOF-Nasugbu", location:"Science Complex",      status:"online",     motion:true,  fps:24, signal:76, streamUrl:undefined, streamUrlHD:undefined },
-  { id:"CAM-04", name:"JPLPC-Malvar",   location:"Library & Research",   status:"offline",    motion:false, fps:0,  signal:0,  streamUrl:undefined, streamUrlHD:undefined },
-  { id:"CAM-05", name:"Lipa Campus",    location:"Student Center",       status:"online",     motion:false, fps:30, signal:91, streamUrl:undefined, streamUrlHD:undefined },
-  { id:"CAM-06", name:"Balayan Campus", location:"IT & Innovation Hub",  status:"online",     motion:true,  fps:30, signal:84, streamUrl:undefined, streamUrlHD:undefined },
-  { id:"CAM-07", name:"Lemery Campus",  location:"Health Sciences",      status:"online",     motion:false, fps:24, signal:97, streamUrl:undefined, streamUrlHD:undefined },
-  { id:"CAM-08", name:"Lobo Campus",    location:"Creative Arts Bldg",   status:"offline",    motion:false, fps:0,  signal:0,  streamUrl:undefined, streamUrlHD:undefined },
-  { id:"CAM-09", name:"San Juan",       location:"Gymnasium & Courts",   status:"online",     motion:false, fps:30, signal:80, streamUrl:undefined, streamUrlHD:undefined },
-  { id:"CAM-10", name:"Rosario Campus", location:"Commerce Building",    status:"online",     motion:false, fps:30, signal:93, streamUrl:undefined, streamUrlHD:undefined },
-  { id:"CAM-11", name:"Mabini Campus",  location:"Extension Facilities", status:"connecting", motion:false, fps:24, signal:72, streamUrl:undefined, streamUrlHD:undefined },
+  { id:"CAM-01", name:"Main Campus",     location:"Administration Block", status:"online",     fps:30, signal:95, streamUrl:undefined, streamUrlHD:undefined },
+  { id:"CAM-02", name:"Alangilan",       location:"Engineering Building", status:"online",     fps:30, signal:88, streamUrl:undefined, streamUrlHD:undefined },
+  { id:"CAM-03", name:"ARASOF-Nasugbu", location:"Science Complex",      status:"online",     fps:24, signal:76, streamUrl:undefined, streamUrlHD:undefined },
+  { id:"CAM-04", name:"JPLPC-Malvar",   location:"Library & Research",   status:"offline",    fps:0,  signal:0,  streamUrl:undefined, streamUrlHD:undefined },
+  { id:"CAM-05", name:"Lipa Campus",    location:"Student Center",       status:"online",     fps:30, signal:91, streamUrl:undefined, streamUrlHD:undefined },
+  { id:"CAM-06", name:"Balayan Campus", location:"IT & Innovation Hub",  status:"online",     fps:30, signal:84, streamUrl:undefined, streamUrlHD:undefined },
+  { id:"CAM-07", name:"Lemery Campus",  location:"Health Sciences",      status:"online",     fps:24, signal:97, streamUrl:undefined, streamUrlHD:undefined },
+  { id:"CAM-08", name:"Lobo Campus",    location:"Creative Arts Bldg",   status:"offline",    fps:0,  signal:0,  streamUrl:undefined, streamUrlHD:undefined },
+  { id:"CAM-09", name:"San Juan",       location:"Gymnasium & Courts",   status:"online",     fps:30, signal:80, streamUrl:undefined, streamUrlHD:undefined },
+  { id:"CAM-10", name:"Rosario Campus", location:"Commerce Building",    status:"online",     fps:30, signal:93, streamUrl:undefined, streamUrlHD:undefined },
+  { id:"CAM-11", name:"Mabini Campus",  location:"Extension Facilities", status:"connecting", fps:24, signal:72, streamUrl:undefined, streamUrlHD:undefined },
 ];
 
 const GRID_COLS: Record<ColCount, string> = {
@@ -104,7 +104,6 @@ export default function Dashboard() {
   const online     = CAMPUSES.filter(c => c.status === "online").length;
   const offline    = CAMPUSES.filter(c => c.status === "offline").length;
   const connecting = CAMPUSES.filter(c => c.status === "connecting").length;
-  const alerts     = CAMPUSES.filter(c => c.motion && c.status === "online").length;
 
   const filtered = CAMPUSES.filter(cam => {
     const q = search.toLowerCase();
@@ -149,10 +148,9 @@ export default function Dashboard() {
 
         {/* Center: Status pills */}
         <div className="header-stats">
-          <StatPill label="Total"      value={CAMPUSES.length} color="cyan"  />
-          <StatPill label="Online"     value={online}          color="green" />
-          <StatPill label="Offline"    value={offline}         color="red"   />
-          <StatPill label="Alerts"     value={alerts}          color="amber" />
+          <StatPill label="Total"   value={CAMPUSES.length} color="cyan"  />
+          <StatPill label="Online"  value={online}          color="green" />
+          <StatPill label="Offline" value={offline}         color="red"   />
         </div>
 
         {/* Right: system pill + clock */}
@@ -268,7 +266,7 @@ export default function Dashboard() {
         <div className="footer-right">
           <div className="dashboard-footer-dot" />
           <span className="dashboard-footer-status">
-            {online} online · {offline} offline{connecting > 0 ? ` · ${connecting} connecting` : ""} · {alerts} alerts
+            {online} online · {offline} offline{connecting > 0 ? ` · ${connecting} connecting` : ""}
           </span>
         </div>
       </footer>

@@ -77,9 +77,9 @@ html, body, #root {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
-  height: 62px;
-  min-height: 62px;
+  padding: 0 28px;
+  height: 80px;
+  min-height: 80px;
   background: rgba(7,13,26,0.95);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
@@ -88,8 +88,8 @@ html, body, #root {
   z-index: 50;
 }
 .header-logo {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
   filter: drop-shadow(0 0 8px rgba(56,189,248,0.3));
   flex-shrink: 0;
@@ -101,14 +101,14 @@ html, body, #root {
   flex-shrink: 0;
 }
 .dashboard-header-title-main {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--text-primary);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   line-height: 1.2;
 }
 .dashboard-header-title-sub {
-  font-size: 9px;
+  font-size: 9.5px;
   font-family: var(--font-mono);
   color: var(--text-secondary);
   letter-spacing: 0.18em;
@@ -127,19 +127,19 @@ html, body, #root {
 .stat-pill-item {
   display: flex;
   align-items: center;
-  gap: 7px;
-  padding: 5px 12px;
-  border-radius: 8px;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 10px;
   white-space: nowrap;
 }
 .stat-pill-value {
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 700;
   line-height: 1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 .stat-pill-label {
-  font-size: 9px;
+  font-size: 9.5px;
   font-family: var(--font-mono);
   color: var(--text-secondary);
   letter-spacing: 0.14em;
@@ -179,7 +179,7 @@ html, body, #root {
 }
 .live-clock { text-align: right; }
 .live-clock-time {
-  font-size: 17px;
+  font-size: 22px;
   font-family: var(--font-mono);
   font-weight: 500;
   color: var(--cyan);
@@ -187,7 +187,7 @@ html, body, #root {
   line-height: 1;
 }
 .live-clock-date {
-  font-size: 9px;
+  font-size: 9.5px;
   font-family: var(--font-mono);
   color: var(--text-muted);
   letter-spacing: 0.1em;

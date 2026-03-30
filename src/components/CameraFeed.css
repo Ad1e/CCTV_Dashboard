@@ -49,14 +49,6 @@
   background: rgba(239,68,68,0.04);
   pointer-events: none;
   z-index: 1;
-  animation: alertFlash 3s ease infinite;
-}
-
-/* Motion alert: amber glow from bottom */
-.cf-card.cf-motion {
-  box-shadow:
-    0 2px 16px rgba(0,0,0,0.45),
-    0 8px 30px -6px rgba(245,158,11,0.22);
 }
 
 /* ── Feed (video/placeholder area) ──────────────────────── */
@@ -280,24 +272,6 @@
   text-overflow: ellipsis;
 }
 
-/* ── Motion badge ────────────────────────────────────────── */
-.cf-motion-badge {
-  position: absolute;
-  top: 28px;
-  right: 9px;
-  font-size: 7px;
-  font-family: var(--font-mono);
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  color: #fbbf24;
-  background: rgba(245,158,11,0.12);
-  border: 1px solid rgba(245,158,11,0.3);
-  padding: 2px 7px;
-  border-radius: 3px;
-  animation: cfBlink 1s ease infinite;
-  pointer-events: none;
-  z-index: 10;
-}
 
 /* ── Info strip ─────── seamless, no divider line ─────────── */
 .cf-info {

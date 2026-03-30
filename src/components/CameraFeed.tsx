@@ -10,7 +10,6 @@ export interface Campus {
   name: string;
   location: string;
   status: CameraStatus;
-  motion: boolean;
   fps: number;
   signal: number;
   streamUrl?: string;
@@ -154,7 +153,6 @@ export default function CameraFeed({
     featured ? "cf-card-featured" : "",
     expanded  ? "cf-card-expanded"  : "",
     displayStatus === "offline" ? "cf-card-offline" : "",
-    cam.motion && displayStatus === "online" ? "cf-motion" : "",
   ].filter(Boolean).join(" ");
 
   return (
@@ -226,10 +224,6 @@ export default function CameraFeed({
         {/* Status badge */}
         <StatusBadge status={displayStatus} />
 
-        {/* Motion badge */}
-        {cam.motion && displayStatus === "online" && (
-          <div className="cf-motion-badge">⚡ MOTION</div>
-        )}
 
         {/* Featured badge */}
         {featured && <div className="cf-main-badge">MAIN FEED</div>}
